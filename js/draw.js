@@ -4,7 +4,7 @@ import {DrawClient} from "./drawClient.js";
 const main = ((settings) => {
   const toolNames = {};
   let layers = [];
-  let saves = {undo: [], redo: []};
+  let saves = { undo: [], redo: [] };
   let pad;
   let client = new DrawClient();
   let img = new Image();
@@ -87,27 +87,20 @@ const main = ((settings) => {
         }
       }
       if(evt.code === 'KeyR'){
+        console.log('Rotating');
         let c = layers[0].canvas;
-
-        // let l = document.createElement('canvas');
-        //l.getContext('2d').drawImage(c, 200,200,32,32);
-        //let img = new Image();
-
         c.ctx.clearRect(200,200,32,32);
-        //console.log(img.src);
         c.ctx.translate(216,216);
         c.ctx.rotate(Math.PI / 180);
         c.ctx.translate(-216,-216);
-        c.ctx.drawImage(img, 200, 200);
-        // let img = c.ctx.getImageData(200,200,32,32);
-        //c.ctx.beginPath();
-        // c.ctx.fillStyle = "red";
-        // c.ctx.fillRect(200,200,32,32);
-        // c.ctx.fillStyle = "blue";
-        // c.ctx.fillRect(200,200,32,32);
-        //c.ctx.beginPath();
-        //c.ctx.drawImage(l,0,0);
+        c.ctx.drawImage(img, 200, 200);    
         
+        let t = c.cloneNode();
+        t.ctx = t.getContext('2d');
+        t.ctx.drawImage(c, 0,0);
+        console.log(t.ctx);
+        c.ctx.drawImage(t, 250, 250);
+
       }
       if(evt.code === 'KeyX'){
         if(saves.redo.length > 0){
