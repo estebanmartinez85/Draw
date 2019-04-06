@@ -65,10 +65,8 @@ const main = ((settings) => {
     window.addEventListener('keydown', (evt) => {
       if(evt.code === 'KeyL') addLayer();
       if(evt.code === 'KeyZ') {
-        //let img = new Image();
         img.src = './icons/line_icon.png';
         layers[0].canvas.ctx.drawImage(img, 200, 200);
-        //img.src = c.toDataURL();
 
         if(saves.undo.length > 0){
           console.log("UNDO");
