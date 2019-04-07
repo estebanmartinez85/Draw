@@ -2,20 +2,11 @@ export class Tool {
 
   constructor(canvas){
     this.canvas = canvas;
-    this.addEvent('mouseup', () => { this.canvas.save(); });
   }
 
-  setupEvents(canvas){
-
-  }
+  setupEvents(canvas){}
 
 
-
-  clearEvents(){
-    for(let u of this.events){
-      u.overlay.removeEventListener(u.eventName, u.handler, u.option);
-    }
-  }
 
   createTemporaryLayer(){
     let tempCanvas = document.createElement('canvas');

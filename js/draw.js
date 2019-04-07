@@ -10,13 +10,7 @@ const main = ((settings) => {
   let img = new Image();
 
 
-  function loadTool(toolName) {
-    return function(e) {
-      if(client.tool) client.tool.clearEvents();
-      client.tool = new toolNames[toolName](pad, client);
-      client.tool.setupEvents();
-    }
-  }
+
 
   function createPad(){
     let canvas = document.createElement('canvas');
@@ -129,57 +123,6 @@ const main = ((settings) => {
       }
 
     });
-  }
-
-  function addLayer(backgroundColor = null){
-    let canvas = document.createElement('canvas');
-    canvas.style.position = 'absolute';
-    canvas.width = settings.width;
-    canvas.height = settings.height;
-    canvas.style.left = '0';
-    canvas.style.top = '0';
-    canvas.setAttribute('id', 'canvas');
-    canvas.style.zIndex = (layers.length * 1000).toString();
-    document.getElementById(settings.Id).appendChild(canvas);
-
-    canvas.ctx = canvas.getContext('2d');
-    if(backgroundColor !== null) {
-      canvas.ctx.fillStyle = backgroundColor;
-      canvas.ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    layers.push({canvas: canvas, overlays: []});
-    client.layerPosition = layers.length - 1;
-    createOverlay(layers.length - 1);
-  }
-
-  function setLayer(index){
-    let overlayIndex = layers[index].overlays.length - 1;
-    pad.ctx = layers[index].overlays[overlayIndex].getContext('2d');
-    client.layerPosition = index;
-  }
-
-  function createOverlay(layerIndex){
-    let overlay = document.createElement('canvas');
-    overlay.width = pad.width;
-    overlay.height = pad.height;
-    overlay.style.position = "absolute";
-    overlay.style.left = "0";
-    overlay.style.top = "0";
-    overlay.setAttribute('id', 'overlay');
-    overlay.ctx = overlay.getContext('2d');
-
-    let overlayIndex = layers[layerIndex].overlays.length;
-    overlay.style.zIndex = (layerIndex * 1000) + (overlayIndex + 1); //(parseInt(layers[layerPosition].overlay.style.zIndex) + overlayPosition + 1).toString();
-    layers[layerIndex].overlays.push(overlay);
-
-    if(parseInt(overlayIndex) === 0) {
-      layers[layerIndex].canvas.insertAdjacentElement('afterend', overlay);
-    } else {
-      layers[layerIndex].overlays[overlayIndex - 1].insertAdjacentElement('afterend', overlay);
-    }
-
-    pad.ctx = overlay.getContext('2d');
   }
 
   function loadMenu(){
