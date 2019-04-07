@@ -1,20 +1,15 @@
 export class Tool {
 
-  constructor(pad, client){
-    this.pad = pad;
-    this.client = client;
-    this.events = [];
-    this.addEvent('mouseup', () => { this.pad.save(); }, this.pad);
+  constructor(canvas){
+    this.canvas = canvas;
+    this.addEvent('mouseup', () => { this.canvas.save(); });
   }
 
   setupEvents(canvas){
 
   }
 
-  addEvent(eventName, handler, layer, option = false){
-    this.events.push({eventName: eventName, handler: handler, overlay: layer, option: option});
-    layer.addEventListener(eventName, handler, option);
-  }
+
 
   clearEvents(){
     for(let u of this.events){

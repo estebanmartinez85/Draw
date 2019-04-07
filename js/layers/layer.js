@@ -1,10 +1,10 @@
 export class Layer {
-  constructor(width, height, index = 0) {
+  constructor(mainCanvas, index = 0) {
     this.index = index;
 
     this.canvas = document.createElement('canvas');
-    this.canvas.width = width;
-    this.canvas.height = height;
+    this.canvas.width = mainCanvas.width;
+    this.canvas.height = mainCanvas.height;
     
     this.canvas.style.left = '0';
     this.canvas.style.top = '0';
@@ -20,7 +20,5 @@ export class Layer {
     this.canvas.style.zIndex = index;
   }
 
-  save(){
-    
-  }
+  save(){  }
 }

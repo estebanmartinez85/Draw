@@ -8,10 +8,10 @@ export class Brush extends Tool {
   }
 
   setupEvents(){
-    this.addEvent('mousedown', () => { this.paint = true; }, this.pad);
-    this.addEvent('mouseup', () => { this.paint = false; this.prev = null; }, this.pad);
-    this.addEvent('mousemove', (evt) => { this.paintOn(evt); }, this.pad);
-    this.addEvent('mouseleave', () => { this.prev = null; }, this.pad);
+    this.addEvent('mousedown', () => { this.paint = true; });
+    this.addEvent('mouseup', () => { this.paint = false; this.prev = null; });
+    this.addEvent('mousemove', (evt) => { this.paintOn(evt); });
+    this.addEvent('mouseleave', () => { this.prev = null; });
   }
 
   paintOn(evt){
